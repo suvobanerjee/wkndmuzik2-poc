@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/wkndmuzik2" mode="merge"/>
+    <filter root="/content/wkndmuzik2" mode="merge"/>
+    <filter root="/content/dam/wkndmuzik2" mode="merge"/>
+    <filter root="/content/experience-fragments/wkndmuzik2" mode="merge"/>
+</workspaceFilter>
