@@ -4,6 +4,36 @@ console.log("Validation js called");
 (function(window, document, $, Granite, undefined){
 	"use strict";
 	
+	 $(document).on("foundation-contentloaded", function (e){
+		 console.log("content loaded");
+		 showHide();
+	 });
+			 
+	$(document).on("change",".checkboxToggle",function(e){
+		console.log("Inside Checkbox change");
+		showHide();
+		 
+	 });
+	
+	function showHide()
+	{
+		var checkBoxVal = document.getElementsByClassName("checkboxToggle")[0];
+		 var toggleContainer = document.getElementsByClassName("toggleContainer")[0];
+		 console.log("Inside Checkbox change "+checkBoxVal);
+		 if(checkBoxVal.checked == true)
+			 {
+			 	console.log("True");
+			 	toggleContainer.classList.remove("hide");
+			 	toggleContainer.classList.add("show");
+			 }
+		 else
+			 {
+			 	console.log("False----");
+			 	toggleContainer.classList.remove("show");
+			 	toggleContainer.classList.add("hide");
+			 }
+	}
+	
 	$(document).on("click",".cq-dialog-submit", function(e){
 		e.stopPropagation();
 		e.preventDefault();

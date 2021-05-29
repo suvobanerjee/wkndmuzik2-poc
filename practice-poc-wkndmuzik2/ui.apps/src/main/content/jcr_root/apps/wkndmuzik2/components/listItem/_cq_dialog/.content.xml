@@ -34,12 +34,23 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
                         text="Need Multifield"
-                        name="./needMulti"/>
-                    <needMultiType
-					    jcr:primaryType="nt:unstructured"
-					    sling:resourceType="granite/ui/components/foundation/form/hidden"
-					    name="./needMulti@TypeHint"
-					    value="Boolean"/>
+                        uncheckedValue="false"
+                        value="true"
+                        name="./needMulti"
+                        granite:class="checkboxToggle"/>
+					<toggle
+                		jcr:primaryType="nt:unstructured"
+                		sling:resourceType="granite/ui/components/coral/foundation/container"
+                		granite:class="toggleContainer"
+                		>
+                		<items jcr:primaryType="nt:unstructured">
+  						<toggleText
+                        	jcr:primaryType="nt:unstructured"
+                        	sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        	fieldLabel="toggleText"
+                        	name="./toggleText"/>              	
+                        	</items>	
+					</toggle>
                 </items>
             </column>
         </items>
