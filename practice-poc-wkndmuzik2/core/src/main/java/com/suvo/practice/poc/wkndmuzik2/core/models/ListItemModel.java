@@ -1,9 +1,12 @@
 package com.suvo.practice.poc.wkndmuzik2.core.models;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -17,7 +20,7 @@ import org.slf4j.LoggerFactory;
 import com.suvo.practice.poc.wkndmuzik2.core.utils.ProjectContstants;
 
 @Model(adaptables = {Resource.class},
-resourceType = "wkndmuzik2/components/image",
+resourceType = "wkndmuzik2/components/listItem",
 defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
 )
 
@@ -35,8 +38,15 @@ public class ListItemModel {
 	@ValueMapValue 
 	protected String text;
 	
+
 	@ValueMapValue
 	protected String length;
+	
+	//@ValueMapValue(name = "multifield")
+	@Inject
+	@Named("multifield/.")
+	protected List<MultiFieldModel> multifieldList;
+	
 	
 	private Map<String, Object> listItemMap = new HashMap<String, Object>();
 
@@ -47,6 +57,14 @@ public class ListItemModel {
 		
 		try {
 			
+			if(multifieldList.isEmpty())
+			{
+				log.debug("List is empty!!!");
+			}
+			else
+			{
+				log.debug("List is not empty!!!");
+			}
 			listItemMap.put(ProjectContstants.MOLECULE_NAME, ProjectContstants.LISTITEM_COMP);
 			
 			if( text != null)
@@ -68,5 +86,21 @@ public class ListItemModel {
 	 public Map<String, Object> getListItemMap() {
 	        return listItemMap;
 	    }
+
+
+	public List<MultiFieldModel> getMultifieldList() {
+		return multifieldList;
+	}
+	 
+
+	public String getText() {
+		return text;
+	}
+
+
+	public String getLength() {
+		return length;
+	}
+
 
 }
