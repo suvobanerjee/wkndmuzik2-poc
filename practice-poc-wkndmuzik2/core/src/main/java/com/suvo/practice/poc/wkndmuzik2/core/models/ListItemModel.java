@@ -64,6 +64,7 @@ public class ListItemModel {
 			else
 			{
 				log.debug("List is not empty!!!");
+				listItemMap.put(ProjectContstants.MULTIFIELD, multifieldList);
 			}
 			listItemMap.put(ProjectContstants.MOLECULE_NAME, ProjectContstants.LISTITEM_COMP);
 			
