@@ -18,6 +18,7 @@ public final class ProjectContstants {
 	public static final String RESPONSIVE = "cq:responsive";
 	public static final String OFFSET = "offset";
 	public static final String WIDTH = "width";
+	public static final String MULTIFIELD = "multiField";
 	
 	
 	

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.collections.map.HashedMap;
@@ -26,6 +27,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.adobe.cq.wcm.core.components.models.Container;
+import com.adobe.granite.workflow.WorkflowException;
+import com.adobe.granite.workflow.WorkflowSession;
+import com.adobe.granite.workflow.exec.WorkflowData;
+import com.adobe.granite.workflow.model.WorkflowModel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.suvo.practice.poc.wkndmuzik2.core.utils.ProjectContstants;
 import com.suvo.practice.poc.wkndmuzik2.core.utils.Utils;
@@ -74,6 +79,7 @@ public class PageExporter {
 		{
 			templateJsonGenerator();
 			pageBodyJsonGenerator();
+			triggerWorkFlow();
 			
 		}
 		catch(Exception e)
@@ -160,6 +166,24 @@ public class PageExporter {
 			
 		} catch (Exception e) {
 			log.error("Exception in pageBodyJsonGEnerator: ",e);
+		}
+	}
+	
+	
+	
+	private void triggerWorkFlow()
+	{
+		try {
+		ResourceResolver resolver = req.getResourceResolver();
+		
+		WorkflowSession workflowSession = resolver.adaptTo(WorkflowSession.class);
+		
+			WorkflowModel workflowModel = workflowSession.getModel("/var/workflow/models/wkndmuzik2-custom-wf");
+			WorkflowData workflowData = workflowSession.newWorkflowData("JCR_PATH", currentRes.getPath());
+			workflowSession.startWorkflow(workflowModel, workflowData);
+		} catch (Exception e) {
+			
+			log.error("Error in workflow trigger ",e);
 		}
 	}
 
